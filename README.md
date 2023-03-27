@@ -74,5 +74,5 @@ ruby 2.7.4p191 (2021-07-07 revision a21a3b7d23) [x86_64-linux]
 
 
 ## License
-[MIT]
+[MIT](https://github.com/randy-development-work/phase-4-peperuka-project-server/blob/main/LICENSE.md)
 
