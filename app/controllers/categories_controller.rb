@@ -8,10 +8,12 @@ class CategoriesController < ApplicationController
     render json: @categories
   end
 
-  # # GET /categories/1
-  # def show
-  #   render json: @category
-  # end
+  # GET /categories/:id
+  def show
+    category = set_category
+    items = Item.where(category_id: category.id)
+    render json: items
+  end
 
   # # POST /categories
   # def create
