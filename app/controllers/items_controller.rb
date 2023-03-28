@@ -2,11 +2,11 @@ class ItemsController < ApplicationController
   before_action :set_item, only: %i[ show update destroy ]
 
   # GET /items
-  # def index
-  #   @items = Item.all
+  def index
+    @items = Item.all
 
-  #   render json: @items
-  # end
+    render json: @items
+  end
 
   # # GET /items/1
   # def show
