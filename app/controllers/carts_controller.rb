@@ -1,12 +1,12 @@
 class CartsController < ApplicationController
-  before_action :set_cart, only: %i[ show update destroy ]
-  skip_before_action, :authorize, only: [:index, :show]
+  skip_before_action :authorize, only: [:show, :destroy]
 
   # GET /carts
   def index
     @carts = Cart.all
     total = @carts.sum(:price)
-    render json: { cartItems: @carts, total: total }, status: :created
+    @cart_count = Cart.count
+    render json: { cartItems: @carts, total: total, count: @cart_count }, status: :created
   end
 
   # GET /carts/1

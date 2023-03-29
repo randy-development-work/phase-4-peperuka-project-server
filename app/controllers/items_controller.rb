@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
   before_action :set_item, only: %i[ show update destroy ]
-  skip_before_action, :authorize, only: [:index]
+  skip_before_action :authorize, only: [:index]
 
   # GET /items
   def index
@@ -47,7 +47,7 @@ class ItemsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def item_params
-      params.require(:item).permit(:name, :image, :vendor, :location, :price)
+      params.require(:item).permit(:name, :image, :vendor, :location, :price, :user_id)
     end
 
     def render_not_found_response
