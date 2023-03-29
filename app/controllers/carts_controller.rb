@@ -41,7 +41,7 @@ class CartsController < ApplicationController
   def destroy
     @cart.destroy
     total = Cart.all.sum(:price)
-    render json: { cartItems: carts, total: total}
+    render json: { cartItems: Cart.all, total: total}
   end
 
   private
