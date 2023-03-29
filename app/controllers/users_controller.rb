@@ -9,14 +9,16 @@ class UsersController < ApplicationController
     render json: @users
   end
 
-  # GET /users/:id
+  # GET /me
   def show
-    render json: @user
+    user = User.find(session[:user_id])
+    render json: user, status: :created
   end
 
   # POST /signup
   def create
     @user = User.create!(user_params)
+    session[:user_id] = user.id
     render json: @user, status: :created
     
   end
