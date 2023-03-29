@@ -182,5 +182,14 @@ Item.create([
     }
 ])
 
+Cart.create([
+    {
+        image:"https://images.unsplash.com/photo-1595348020949-87cdfbb44174?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8d2hleSUyMHByb3RlaW58ZW58MHx8MHx8&auto=format&fit=crop&w=700&q=60",
+        name: "Whey Protein 2LBs",
+        vendor: "Afya Bora Pharmacy",
+        price: 2550
+    }
+])
+
 
 puts "Chequered Flag!🏁"
