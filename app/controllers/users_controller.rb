@@ -2,11 +2,11 @@ class UsersController < ApplicationController
   skip_before_action :authorize, only:[:create]
 
   # GET /users
-  def index
-    @users = User.all
+  # def index
+  #   @users = User.all
 
-    render json: @users
-  end
+  #   render json: @users
+  # end
 
   # GET /me
   def show
@@ -32,9 +32,9 @@ class UsersController < ApplicationController
   # end
 
   # DELETE /users/1
-  def destroy
-    @user.destroy
-  end
+  # def destroy
+  #   @user.destroy
+  # end
 
   private
     # Use callbacks to share common setup or constraints between actions.
