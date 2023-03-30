@@ -1,5 +1,5 @@
 class CartsController < ApplicationController
-  skip_before_action :authorize, only: [:show, :destroy]
+  skip_before_action :authorize, only: [:show]
 
   # GET /carts
   def index
@@ -40,7 +40,9 @@ class CartsController < ApplicationController
 
   # DELETE /carts/:id
   def destroy
-    @cart.destroy
+    # @cart.destroy
+    cart = Cart.find_by(id: params[:id])
+    cart.destroy
     total = Cart.all.sum(:price)
     render json: { cartItems: Cart.all, total: total}
   end
@@ -53,7 +55,7 @@ class CartsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def cart_params
-      params.require(:cart).permit(:name, :image, :vendor, :price)
+      params.require(:cart).permit(:name, :image, :vendor, :price, :user_id)
     end
 
     def render_not_found_response
