@@ -3,10 +3,13 @@ class CartsController < ApplicationController
 
   # GET /carts
   def index
-    @carts = Cart.all
+    user = User.find_by(id: session[:user_id])
+    @carts = user.carts.all
     total = @carts.sum(:price)
-    @cart_count = Cart.count
-    render json: { cartItems: @carts, total: total, count: @cart_count }, status: :created
+    @cart_count = @carts.count
+    render json: { cartItems: @carts, total: total, count: @cart_count }, include: {
+      user: { except: [:password_digest, :created_at, :updated_at]}
+  }, except: [:created_at, :updated_at], status: :created
   end
 
   # GET /carts/1
@@ -23,10 +26,12 @@ class CartsController < ApplicationController
     # else
     #   render json: @cart.errors, status: :unprocessable_entity
     # end
-    carts = Cart.all
-    cart = Cart.create!(cart_params)
+    user = User.find_by(id: session[:user_id])
+    carts = user.carts.all
+    cart = user.carts.create!(cart_params)
     total = carts.sum(:price)
-    render json: { cartItems: carts, total: total}, status: :created
+    cart_count = carts.count
+    render json: { cartItems: carts, total: total, count: cart_count}, status: :created
   end
 
   # PATCH/PUT /carts/1
@@ -41,10 +46,12 @@ class CartsController < ApplicationController
   # DELETE /carts/:id
   def destroy
     # @cart.destroy
-    cart = Cart.find_by(id: params[:id])
+    user = User.find_by(id: session[:user_id])
+    cart = user.carts.find_by(id: params[:id])
     cart.destroy
-    total = Cart.all.sum(:price)
-    render json: { cartItems: Cart.all, total: total}
+    total = user.carts.all.sum(:price)
+    cart_count = user.carts.count
+    render json: { cartItems: user.carts.all, total: total, count: cart_count}
   end
 
   private
