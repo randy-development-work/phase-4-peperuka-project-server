@@ -182,6 +182,13 @@ Item.create([
     }
 ])
 
+u1 = User.create([
+    {
+        username: "pix",
+        password: "123"
+    }
+])
+
 Cart.create([
     {
         image:"https://images.unsplash.com/photo-1595348020949-87cdfbb44174?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8d2hleSUyMHByb3RlaW58ZW58MHx8MHx8&auto=format&fit=crop&w=700&q=60",
@@ -191,6 +198,11 @@ Cart.create([
         user_id: 1
     }
 ])
+
+Admin.create({
+    admin_name: "a1",
+    password: "321"
+})
 
 
 puts "Chequered Flag!🏁"
