@@ -54,6 +54,14 @@ class CartsController < ApplicationController
     render json: { cartItems: user.carts.all, total: total, count: cart_count}
   end
 
+  # DELETE /carts
+  def checkout
+    user = User.find_by(id: session[:user_id])
+    cart = user.carts
+    cart.destroy_all
+    head :no_content
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_cart
