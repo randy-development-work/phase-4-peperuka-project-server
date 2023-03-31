@@ -4,6 +4,8 @@ class CategoriesController < ApplicationController
   before_action :administration
   skip_before_action :administration, only: [:index, :show, :locate]
 
+  rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response
+
   # GET /categories
   def index
     @categories = Category.all
@@ -20,7 +22,7 @@ class CategoriesController < ApplicationController
 
   # GET /pata/:id
   def locate
-    category = Category.find_by(id: params[:id])
+    category = Category.find(params[:id])
     render json: category
   end
 
@@ -35,13 +37,11 @@ class CategoriesController < ApplicationController
   #   end
   # end
 
-  # PATCH/PUT /categories/1
+  # PATCH/PUT /categories/:id
   def update
-    if @category.update(category_params)
-      render json: @category
-    else
-      render json: @category.errors, status: :unprocessable_entity
-    end
+      category = Category.find_by(id: params[:id])
+      category.update(category_params)
+      render json: category, status: :created  
   end
 
   # # DELETE /categories/1

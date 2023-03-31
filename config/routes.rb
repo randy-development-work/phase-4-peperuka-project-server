@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   resources :carts, only: [:index, :create]
   resources :items, only: [:index]
-  resources :categories, only: [:index, :show, :update, :destroy]
+  resources :categories, only: [:index, :show, :destroy]
   post "/signup", to: "users#create"
   get "/me", to: "users#show"
   post "/login", to: "sessions#create"
@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   delete "/carts/:id", to: "carts#destroy"
   delete "/carts", to: "carts#checkout"
   get "/pata/:id", to: "categories#locate"
+  patch "/categories/:id", to: "categories#update"
 
   # admin
   post "/adminin", to: "sessions#in"
