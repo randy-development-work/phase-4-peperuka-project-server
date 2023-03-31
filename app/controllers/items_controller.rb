@@ -16,16 +16,11 @@ class ItemsController < ApplicationController
     render json: set_item
   end
 
-  # # POST /items
-  # def create
-  #   @item = Item.new(item_params)
-
-  #   if @item.save
-  #     render json: @item, status: :created, location: @item
-  #   else
-  #     render json: @item.errors, status: :unprocessable_entity
-  #   end
-  # end
+  # POST /items
+  def create
+    item = Item.create!(item_params)
+    render json: item, status: :created
+  end
 
   # PATCH /items/:id
   def update
