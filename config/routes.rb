@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   resources :carts, only: [:index, :create]
-  resources :items, only: [:index]
+  resources :items, only: [:index, :show, :create, :update, :destroy]
   resources :categories, only: [:index, :show, :destroy, :create]
   post "/signup", to: "users#create"
   get "/me", to: "users#show"

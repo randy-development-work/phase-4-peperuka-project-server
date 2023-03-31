@@ -1,6 +1,8 @@
 class ItemsController < ApplicationController
   before_action :set_item, only: %i[ show update destroy ]
-  skip_before_action :authorize, only: [:index]
+  skip_before_action :authorize, only: [:index, :show, :create, :destroy, :update]
+  before_action :administration, only: [:create, :update, :destroy]
+  
 
   # GET /items
   def index
@@ -9,10 +11,10 @@ class ItemsController < ApplicationController
     render json: @items
   end
 
-  # # GET /items/1
-  # def show
-  #   render json: @item
-  # end
+  # GET /items/:id
+  def show
+    render json: set_item
+  end
 
   # # POST /items
   # def create
@@ -42,7 +44,7 @@ class ItemsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_item
-      @item = Item.find(params[:id])
+      @item = Item.find_by(id: params[:id])
     end
 
     # Only allow a list of trusted parameters through.
