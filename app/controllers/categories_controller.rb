@@ -1,8 +1,8 @@
 class CategoriesController < ApplicationController
   before_action :set_category, only: %i[ show update destroy ]
-  skip_before_action :authorize, only: [:index, :show, :locate, :update]
+  skip_before_action :authorize, only: [:index, :show, :locate, :update, :create]
   before_action :administration
-  skip_before_action :administration, only: [:index, :show, :locate]
+  skip_before_action :administration, only: [:index, :show]
 
   rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response
 
@@ -26,8 +26,8 @@ class CategoriesController < ApplicationController
     render json: category
   end
 
-  # # POST /categories
-  # def create
+  # POST /categories
+  def create
   #   @category = Category.new(category_params)
 
   #   if @category.save
@@ -35,7 +35,10 @@ class CategoriesController < ApplicationController
   #   else
   #     render json: @category.errors, status: :unprocessable_entity
   #   end
-  # end
+
+    category = Category.create!(category_params)
+    render json: category, status: :created
+  end
 
   # PATCH/PUT /categories/:id
   def update

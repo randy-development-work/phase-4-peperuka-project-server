@@ -14,7 +14,7 @@ class ApplicationController < ActionController::API
      
     # admin authorization
     def administration
-        return render json: { errors: ["Not authorized"] }, status: :unauthorized unless session.include? :admin_id
+        return render json: { errors: ["Not Admin!"] }, status: :unauthorized unless session.include? :admin_id
     end
 
     # error handling
