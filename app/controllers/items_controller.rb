@@ -27,14 +27,12 @@ class ItemsController < ApplicationController
   #   end
   # end
 
-  # # PATCH/PUT /items/1
-  # def update
-  #   if @item.update(item_params)
-  #     render json: @item
-  #   else
-  #     render json: @item.errors, status: :unprocessable_entity
-  #   end
-  # end
+  # PATCH /items/:id
+  def update
+    item = set_item
+    item.update(item_params)
+    render json: item, status: :created    
+  end
 
   # # DELETE /items/1
   # def destroy
@@ -49,7 +47,7 @@ class ItemsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def item_params
-      params.require(:item).permit(:name, :image, :vendor, :location, :price, :user_id)
+      params.require(:item).permit(:name, :image, :vendor, :location, :vendor_contact, :price, :category_id)
     end
 
     def render_not_found_response
