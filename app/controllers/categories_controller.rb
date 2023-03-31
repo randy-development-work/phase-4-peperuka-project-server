@@ -1,6 +1,8 @@
 class CategoriesController < ApplicationController
   before_action :set_category, only: %i[ show update destroy ]
-  skip_before_action :authorize, only: [:index, :show]
+  skip_before_action :authorize, only: [:index, :show, :locate, :update]
+  before_action :administration
+  skip_before_action :administration, only: [:index, :show, :locate]
 
   # GET /categories
   def index
@@ -16,6 +18,12 @@ class CategoriesController < ApplicationController
     render json: items
   end
 
+  # GET /pata/:id
+  def locate
+    category = Category.find_by(id: params[:id])
+    render json: category
+  end
+
   # # POST /categories
   # def create
   #   @category = Category.new(category_params)
@@ -27,14 +35,14 @@ class CategoriesController < ApplicationController
   #   end
   # end
 
-  # # PATCH/PUT /categories/1
-  # def update
-  #   if @category.update(category_params)
-  #     render json: @category
-  #   else
-  #     render json: @category.errors, status: :unprocessable_entity
-  #   end
-  # end
+  # PATCH/PUT /categories/1
+  def update
+    if @category.update(category_params)
+      render json: @category
+    else
+      render json: @category.errors, status: :unprocessable_entity
+    end
+  end
 
   # # DELETE /categories/1
   # def destroy

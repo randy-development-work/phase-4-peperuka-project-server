@@ -1,7 +1,7 @@
 class AdminsController < ApplicationController
-  before_action :set_admin, only: %i[ show update destroy ]
+  # before_action :set_admin, only: %i[ show update destroy ]
   before_action :administration
-  skip_before_action :authorize
+  skip_before_action :authorize, only: [:show]
 
   # GET /admins
   # def index
@@ -10,10 +10,10 @@ class AdminsController < ApplicationController
   #   render json: @admins
   # end
 
-  # GET /god
+  # GET /ad
   def show
-    admin = Admin.find(session[:user_id])
-    render json: user, status: :created
+    admin = Admin.find(session[:admin_id])
+    render json: admin, status: :created
   end
 
   # POST /admins
