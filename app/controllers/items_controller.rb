@@ -34,10 +34,10 @@ class ItemsController < ApplicationController
     render json: item, status: :created    
   end
 
-  # # DELETE /items/1
-  # def destroy
-  #   @item.destroy
-  # end
+  # DELETE /items/:id
+  def destroy
+    set_item.destroy
+  end
 
   private
     # Use callbacks to share common setup or constraints between actions.
