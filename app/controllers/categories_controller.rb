@@ -1,6 +1,6 @@
 class CategoriesController < ApplicationController
-  before_action :set_category, only: %i[ show update destroy ]
-  skip_before_action :authorize, only: [:index, :show, :locate, :update, :create]
+  # before_action :set_category, only: %i[ show update destroy ]
+  skip_before_action :authorize, only: [:index, :show, :locate, :update, :create, :destroy]
   before_action :administration
   skip_before_action :administration, only: [:index, :show]
 
@@ -47,10 +47,12 @@ class CategoriesController < ApplicationController
       render json: category, status: :created  
   end
 
-  # # DELETE /categories/1
-  # def destroy
-  #   @category.destroy
-  # end
+  # DELETE /categories/:id
+  def destroy
+    category = Category.find_by(id: params[:id])
+    category.destroy
+    head :no_content
+  end
 
   private
     # Use callbacks to share common setup or constraints between actions.
