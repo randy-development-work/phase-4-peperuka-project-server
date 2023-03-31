@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   post "/adminin", to: "sessions#in"
   delete "/adminout", to: "sessions#out"
   get "/ad", to: "admins#show"
+  post "/newadmin", to: "admins#create"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")

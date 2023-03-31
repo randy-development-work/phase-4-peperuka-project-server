@@ -1,7 +1,7 @@
 class AdminsController < ApplicationController
   # before_action :set_admin, only: %i[ show update destroy ]
   before_action :administration
-  skip_before_action :authorize, only: [:show]
+  skip_before_action :authorize, only: [:show, :create]
 
   # GET /admins
   # def index
@@ -16,16 +16,12 @@ class AdminsController < ApplicationController
     render json: admin, status: :created
   end
 
-  # POST /admins
-  # def create
-  #   @admin = Admin.new(admin_params)
-
-  #   if @admin.save
-  #     render json: @admin, status: :created, location: @admin
-  #   else
-  #     render json: @admin.errors, status: :unprocessable_entity
-  #   end
-  # end
+  # POST /newadmin
+  def create
+    admin = Admin.create!(admin_params)
+    # session[:admin_id] = admin.id
+    render json: admin, status: :created
+  end
 
   # PATCH/PUT /admins/1
   # def update
@@ -49,6 +45,6 @@ class AdminsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def admin_params
-      params.require(:admin).permit(:admin_name, :password_digest)
+      params.permit(:admin_name, :password, :password_confirmation)
     end
 end
