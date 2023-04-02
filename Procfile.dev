@@ -1,3 +1,2 @@
 web: PORT=4000 npm start --prefix client
 api: PORT=3000 rails s
-web: bundle exec puma -e production
