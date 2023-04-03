@@ -1,6 +1,6 @@
 class AdminsController < ApplicationController
   # before_action :set_admin, only: %i[ show update destroy ]
-  before_action :administration
+  before_action :administration, only: [:show]
   skip_before_action :authorize, only: [:show, :create]
 
   # GET /admins
