@@ -2,7 +2,7 @@ class CategoriesController < ApplicationController
   # before_action :set_category, only: %i[ show update destroy ]
   skip_before_action :authorize, only: [:index, :show, :locate, :update, :create, :destroy]
   before_action :administration
-  skip_before_action :administration, only: [:index, :show]
+  skip_before_action :administration, only: [:index, :show, :locate, :update, :create, :destroy]
 
   rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response
 

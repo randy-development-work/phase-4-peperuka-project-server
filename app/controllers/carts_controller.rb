@@ -1,5 +1,5 @@
 class CartsController < ApplicationController
-  skip_before_action :authorize, only: [:show, :index, :create]
+  skip_before_action :authorize, only: [:show, :index, :create, :destroy, :checkout]
   # skip_before_action :administration, only: [:index]
 
   # GET /carts
