@@ -20,6 +20,8 @@ This is an e-commerce web app which users can use to order household items and/o
 ## Resources
 - Category: has many items.
 - Item: belongs to a category.
+- Cart: belongs to a user.
+- User: has a cart.
 
 This is a one-to-many relationship.
 
@@ -43,19 +45,24 @@ ruby 2.7.4p191 (2021-07-07 revision a21a3b7d23) [x86_64-linux]
 ```
 
 ## Services (routes)
-- Run this command to get your backend working and run this routes in the search engine:
-```bash
-  rails s
-```
+- The link to the backend is: https://peperuka-server.onrender.com
 
 - The routes available for this API are:
 * GET /categories
 * GET /categories/:id
-* POST /categories/:id
+* POST /categories
+* PATCH /categories/:id
+* DELETE /categories/:id
+* GET /items
+* GET /items/:id
 * POST /items
-* GET /cart
-* PATCH /cart/:id
-* DELETE /cart/:id
+* PATCH /items/:id
+* DELETE /items/:id
+* GET /pata/:id
+* GET /carts
+* DELETE /carts
+* DELETE /carts/:id
+
 
 ## User Journey
 - The user views various categories to choose from, for example, gas, food, or groceries.
